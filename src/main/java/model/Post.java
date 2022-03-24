@@ -34,6 +34,9 @@ public class Post {
         this.comments = comments;
     }
 
+    public Post(long id, String comment) {
+    }
+
     public PostUser getPostUser() {
         return postUser;
     }

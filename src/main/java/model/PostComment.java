@@ -28,6 +28,9 @@ public class PostComment {
         this.comment = comment;
     }
 
+    public PostComment(String postComment) {
+    }
+
     public PostUser getCommentateur() {
         return commentateur;
     }

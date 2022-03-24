@@ -1,6 +1,7 @@
 package persistence;
 
 import model.Post;
+import model.PostComment;
 import model.PostUser;
 
 import javax.persistence.EntityManager;
@@ -25,28 +26,20 @@ public class PostDaoJPAH2 implements PostDao {
     }
 
     public long addUser(String userName) {
-        save(userName);
-        PostUser user = getUser(userName);
+        PostUser user = new PostUser(userName);
+        save(user);
         return user.getId();
     }
 
-    private PostUser getUser(String userName) {
-        final EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-
-        final PostUser user = em.find(PostUser.class, userName);
-        em.getTransaction().commit();
-        em.close();
-        return user;
-    }
-
     public long addPost(long posteurId, String postComment) {
-        save(postComment);
+        Post post = new Post(posteurId, postComment);
+        save(post);
         return posteurId;
     }
 
     public void addComment(long commenteurId, long postId, String commentaire) {
-        save(commentaire);
+        PostComment postComment = new PostComment(commentaire);
+        save(postComment);
     }
 
     public Post getPost(long postId) {
